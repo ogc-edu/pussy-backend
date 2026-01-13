@@ -55,7 +55,7 @@ guestSchema.statics.generateGuestName = function() {
 guestSchema.statics.createGuest = async function(name){
   let guestName = name;
   if (guestName.length === 0){
-    const guestName = this.generateGuestName();
+    guestName = this.generateGuestName();
   }
   const catData = await this.generateCats();
   const guest = await this.create({name: guestName, cats: catData});
@@ -75,8 +75,5 @@ guestSchema.methods.userGenerateCats = async function(){
   this.cats = cats;
   return this.save();
 }
-
-
-
 
 module.exports = mongoose.model('Guest', guestSchema);
